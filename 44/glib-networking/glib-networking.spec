@@ -2,7 +2,7 @@
 ## (rpmautospec version 0.8.4)
 ## RPMAUTOSPEC: autorelease, autochangelog
 %define autorelease(e:s:pb:n) %{?-p:0.}%{lua:
-    release_number = 4.1;
+    release_number = 4.2;
     base_release_number = tonumber(rpm.expand("%{?-b*}%{!?-b:1}"));
     print(release_number + base_release_number - 1);
 }%{?-e:.%{-e*}}%{?-s:.%{-s*}}%{!?-n:%{?dist}}
@@ -48,7 +48,7 @@ Recommends:     libproxy-duktape
 
 Supplements:    glib2
 
-# for force glib2
+# force glib2
 Obsoletes: glib < 2.0
 
 %description
