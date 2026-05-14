@@ -2,7 +2,7 @@
 ## (rpmautospec version 0.8.4)
 ## RPMAUTOSPEC: autorelease, autochangelog
 %define autorelease(e:s:pb:n) %{?-p:0.}%{lua:
-    release_number = 2.2;
+    release_number = 2.3;
     base_release_number = tonumber(rpm.expand("%{?-b*}%{!?-b:1}"));
     print(release_number + base_release_number - 1);
 }%{?-e:.%{-e*}}%{?-s:.%{-s*}}%{!?-n:%{?dist}}
@@ -174,6 +174,9 @@ Obsoletes:      python3-caribou < 0.4.21-10
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1740897
 Conflicts:      gnome-shell-extension-background-logo < 3.34.0
+
+# force glib2
+Obsoletes: glib < 2.0
 
 %description
 GNOME Shell provides core user interface functions for the GNOME 3 desktop,
