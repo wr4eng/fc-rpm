@@ -42,6 +42,7 @@ Requires:       libarchive >= 3.8.0
 Requires:       flatbuffers-compiler >= 25.12.0
 Requires:       flatbuffers >= 25.12.0
 Requires:       protozero >= 1.8.1
+Requires:       protozero-devel >= 1.8.1
 
 Requires(pre):  shadow-utils
 Provides:       user(osrm)
