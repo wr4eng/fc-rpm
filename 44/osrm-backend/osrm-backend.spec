@@ -41,7 +41,6 @@ Requires:       expat
 Requires:       bzip2
 Requires:       libarchive >= 3.8.0
 Requires:       flatbuffers >= 25.12.0
-#Requires:       protozero >= 1.8.1
 
 Requires(pre):  shadow-utils
 Provides:       user(osrm)
@@ -101,12 +100,6 @@ export VTZERO_INCLUDE_DIR=%{_builddir}/%{name}-%{version}/vtzero-1.2.0/include
 
 %cmake_build
 
-# ── post-build: inject SOVERSION into every installed .so ────────────────────
-# Upstream does not set SOVERSION; we use the package major version (26).
-# For each libfoo.so we produce libfoo.so.26.4.1 (real) and libfoo.so.26 (soname symlink).
-# libfoo.so itself becomes the -devel unversioned symlink.
-
-
 # ── install 
 %install
 %cmake_install
@@ -121,7 +114,7 @@ if [ -d "$_src" ] && [ "$(readlink -f $_src)" != "$(readlink -f $_dst)" ]; then
     rm -rf "$_src"
 fi
 
-# ── Inject SOVERSION: upstream builds unversioned .so files only. ─────────────
+# ── Inject SOVERSION: upstream builds unversioned .so files only. 
 # Fedora policy requires:
 #   %{_libdir}/libfoo.so.X.Y.Z   – real shared object (main package)
 #   %{_libdir}/libfoo.so.X       – soname symlink     (main package)
@@ -178,7 +171,7 @@ fi
 # ── file lists 
 
 # Main package: binaries + versioned .so files
-# libosrm.so.26.4.1  (real ELF shared object)
+# libosrm.so.26.5.0  (real ELF shared object)
 # libosrm.so.26      (soname symlink)
 %files
 %{_bindir}/osrm-extract
@@ -199,7 +192,7 @@ fi
 %license %{_licensedir}/%{name}/
 
 
-# -devel package: headers + unversioned .so symlinks + pkg-config
+# ── -devel package: headers + unversioned .so symlinks + pkg-config
 # libosrm.so  (unversioned symlink, needed only at link time with -losrm)
 %files devel
 %{_includedir}/osrm/
@@ -209,7 +202,7 @@ fi
 
 # ── changelog 
 %changelog
-* Mon May 19 2026 W. Hadi HSW <wra.eng@gmail.com> - 26.5.0-2
+* Mon May 18 2026 W. Hadi HSW <wra.eng@gmail.com> - 26.5.0-2
 - Remove %%{_includedir}/flatbuffers/ from %%files devel; headers belong
   to flatbuffers-devel system package, not installed by OSRM CMake
 - Add Requires flatbuffers-devel and protozero-devel to -devel subpackage
