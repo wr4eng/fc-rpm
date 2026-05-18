@@ -28,8 +28,10 @@ BuildRequires:  libosmium-devel >= 2.23.1
 BuildRequires:  sol2-devel >= 3.5.0
 BuildRequires:  libarchive-devel >= 3.8.0
 BuildRequires:  rapidjson-devel >= 1.1.0
-BuildRequires:  flatbuffers-devel >= 25.12.0
 BuildRequires:  protozero-devel >= 1.8.1
+BuildRequires:  flatbuffers-compiler >= 25.12.0
+BuildRequires:  flatbuffers >= 25.12.0
+BuildRequires:  flatbuffers-devel >= 25.12.0
 
 Requires:       boost >= 1.70
 Requires:       lua >= 5.3
@@ -38,7 +40,6 @@ Requires:       fmt >= 8.0
 Requires:       expat
 Requires:       bzip2
 Requires:       libarchive >= 3.8.0
-Requires:       flatbuffers-compiler >= 25.12.0
 Requires:       flatbuffers >= 25.12.0
 Requires:       protozero >= 1.8.1
 
