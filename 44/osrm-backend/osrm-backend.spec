@@ -30,6 +30,7 @@ BuildRequires:  libarchive-devel >= 3.8.0
 BuildRequires:  rapidjson-devel >= 1.1.0
 BuildRequires:  flatbuffers-devel >= 25.12.0
 BuildRequires:  flatbuffers >= 25.12.0
+BuildRequires:  flatbuffers-compiler >= 25.12.0
 BuildRequires:  protozero-devel >= 1.8.1
 
 Requires:       boost >= 1.70
