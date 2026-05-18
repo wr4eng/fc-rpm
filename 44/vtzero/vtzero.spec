@@ -7,9 +7,11 @@ License:        BSD-2-Clause
 URL:            https://github.com/mapbox/vtzero
 Source0:        https://github.com/mapbox/vtzero/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+# vtzero is a header-only C++ library.
+# protozero headers needed at configure time for FindProtozero.cmake check.
+# No iwyu/cppcheck/doxygen/boost needed — those are optional upstream dev tools.
 BuildRequires:  cmake >= 3.18
 BuildRequires:  gcc-c++
-BuildRequires:  pkgconf-pkg-config
 BuildRequires:  protozero-devel >= 1.7.0
 
 BuildArch:      noarch
@@ -17,20 +19,17 @@ BuildArch:      noarch
 
 %description
 vtzero is a header-only C++ library for reading and writing Mapbox Vector
-Tiles (VT spec 2.x). It is tiny, fast, and depends only on protozero.
+Tiles (VT spec 2.x). It is tiny and fast with minimal dependencies.
 
 
 # ── devel subpackage ──────────────────────────────────────────────────────────
-# Header-only libraries ship everything under -devel.
-# The base package is an empty metapackage that pulls in -devel.
+# For header-only libraries everything ships in -devel.
 %package        devel
 Summary:        Development files for %{name}
-# No %%{name} base dep — nothing compiled to link against.
 Requires:       protozero-devel >= 1.7.0
 
 %description    devel
-Header files and CMake find-package config for the vtzero vector tile
-C++ library.
+Header files for the vtzero vector tile C++ library.
 
 
 # ── prep ──────────────────────────────────────────────────────────────────────
@@ -39,17 +38,18 @@ C++ library.
 
 
 # ── build ─────────────────────────────────────────────────────────────────────
-# Header-only: cmake configure + build is essentially a no-op but required
-# so that cmake --install produces the correct directory layout.
+# vtzero 1.2.0 cmake installs ONLY headers — no cmake config, no .so, no pkgconfig.
+# Confirmed from install_manifest: only include/vtzero/*.hpp is installed.
+# We disable examples, tests, and docs to avoid pulling in extra dependencies.
 %build
 %cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=%{_prefix} \
     -DCMAKE_INSTALL_INCLUDEDIR=%{_includedir} \
-    -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
     -DBUILD_TESTING=OFF \
     -DBUILD_EXAMPLES=OFF \
-    -DBUILD_DOCS=OFF
+    -DBUILD_DOCS=OFF \
+    -DWITH_DOCS=OFF
 
 %cmake_build
 
@@ -58,32 +58,32 @@ C++ library.
 %install
 %cmake_install
 
-# Install license file
-install -m 0755 -d %{buildroot}%{_licensedir}/%{name}/
-find %{_builddir}/%{name}-%{version} -maxdepth 1 -type f \
-    \( -iname 'license*' -o -iname 'copying*' \) \
-    -exec install -m 0644 -t %{buildroot}%{_licensedir}/%{name}/ {} +
+# cmake_install only puts headers in buildroot.
+# License is in the source tree — install manually.
+install -D -m 0644 LICENSE \
+    %{buildroot}%{_licensedir}/%{name}/LICENSE
 
 
 # ── file lists ────────────────────────────────────────────────────────────────
 
-# Base package: empty, just carries the license
+# Base package: empty metapackage, carries the license
 %files
-%license %{_licensedir}/%{name}/
+%license %{_licensedir}/%{name}/LICENSE
 
 
-# devel: headers + cmake config
+# devel: the only actual content — 16 header files
+# vtzero 1.2.0 does NOT install cmake find_package config or pkgconfig.
+# Consumers must add the include path manually or use the bundled source.
 %files devel
 %{_includedir}/vtzero/
-%{_datadir}/cmake/vtzero/
-%license %{_licensedir}/%{name}/
+%license %{_licensedir}/%{name}/LICENSE
 
 
 # ── changelog ─────────────────────────────────────────────────────────────────
 %changelog
-* Mon May 19 2026 W. Hadi HSW <wra.eng@gmail.com> - 1.2.0-1
+* Mon May 18 2026 W. Hadi HSW <wra.eng@gmail.com> - 1.2.0-1
 - Initial Fedora package for vtzero 1.2.0
 - Header-only library: BuildArch noarch, single -devel subpackage
-- iwyu/cppcheck/doxygen removed from BuildRequires (optional dev tools,
-  not needed to produce installable headers)
-- boost removed from Requires (not a runtime dependency of header-only lib)
+- cmake install only produces include/vtzero/*.hpp (confirmed from
+  install_manifest); no cmake config or pkgconfig is generated upstream
+- Disabled examples, tests, and docs in cmake to avoid extra dependencies
