@@ -208,7 +208,7 @@ fi
 
 # ── changelog 
 %changelog
-* Mon May 19 2026 W. Hadi HSW <wra.eng@gmail.com> - 26.5.0-2
+* Mon May 18 2026 W. Hadi HSW <wra.eng@gmail.com> - 26.5.0-2
 - Remove %%{_includedir}/flatbuffers/ from %%files devel; headers belong
   to flatbuffers-devel system package, not installed by OSRM CMake
 - Add Requires flatbuffers-devel and protozero-devel to -devel subpackage
