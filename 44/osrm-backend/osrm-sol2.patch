@@ -1,0 +1,50 @@
+--- a/src/extractor/scripting_environment_lua.cpp
++++ b/src/extractor/scripting_environment_lua.cpp
+@@ -34,6 +34,11 @@
+ template <> struct is_container<osmium::Relation> : std::false_type
+ {
+ };
++// Suppress sol2 3.5 broken container iterator codegen for unordered_map<string,bool>.
++// The system sol2 iter struct is missing .end() for this type.
++template <> struct is_container<std::unordered_map<std::string, bool>> : std::false_type
++{
++};
+ } // namespace sol
+ 
+ namespace osrm::extractor
+@@ -453,9 +458,33 @@
+         "road_classification",
+         &ExtractionWay::road_classification,
+         "forward_classes",
+-        &ExtractionWay::forward_classes,
++        sol::property(
++            [](const ExtractionWay &way, sol::this_state s) {
++                sol::state_view lua(s);
++                sol::table t = lua.create_table();
++                for (const auto &kv : way.forward_classes)
++                    t.set(kv.first, kv.second);
++                return t;
++            },
++            [](ExtractionWay &way, sol::table t) {
++                way.forward_classes.clear();
++                for (const auto &kv : t)
++                    way.forward_classes[kv.first.as<std::string>()] = kv.second.as<bool>();
++            }),
+         "backward_classes",
+-        &ExtractionWay::backward_classes,
++        sol::property(
++            [](const ExtractionWay &way, sol::this_state s) {
++                sol::state_view lua(s);
++                sol::table t = lua.create_table();
++                for (const auto &kv : way.backward_classes)
++                    t.set(kv.first, kv.second);
++                return t;
++            },
++            [](ExtractionWay &way, sol::table t) {
++                way.backward_classes.clear();
++                for (const auto &kv : t)
++                    way.backward_classes[kv.first.as<std::string>()] = kv.second.as<bool>();
++            }),
+         "forward_mode",
+         sol::property([](const ExtractionWay &way) { return way.forward_travel_mode; },
+                       [](ExtractionWay &way, TravelMode mode) { way.forward_travel_mode = mode; }),
