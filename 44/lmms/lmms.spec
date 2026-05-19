@@ -75,7 +75,7 @@ BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  fltk-devel >= 1.4.5
 BuildRequires:  fltk-fluid >= 1.4.5
 BuildRequires:  cmake >= 4.3.0
-BuildRequires:  make >=4.4.0
+BuildRequires:  make >= 4.4.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  desktop-file-utils
