@@ -29,7 +29,8 @@ BuildRequires: gettext
 BuildRequires: meson
 BuildRequires: git
 
-BuildRequires: pkgconfig(glib-2.0)
+#BuildRequires: pkgconfig(glib-2.0) 
+BuildRequires: pkgconfig(glib-2.0) >= 2.88.1
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: gjs
