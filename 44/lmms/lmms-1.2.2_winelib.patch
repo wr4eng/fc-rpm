@@ -1,0 +1,12 @@
+diff -up lmms/cmake/modules/FindWine.cmake.orig lmms/cmake/modules/FindWine.cmake
+--- lmms/cmake/modules/FindWine.cmake.orig	2018-11-03 02:43:42.000000000 +0100
++++ lmms/cmake/modules/FindWine.cmake	2021-05-23 21:55:25.176500358 +0200
+@@ -10,7 +10,7 @@
+ LIST(APPEND CMAKE_PREFIX_PATH /opt/wine-stable /opt/wine-devel /opt/wine-staging)
+ 
+ FIND_PATH(WINE_INCLUDE_DIR windows/windows.h PATH_SUFFIXES wine wine/wine)
+-FIND_LIBRARY(WINE_LIBRARY NAMES wine PATH_SUFFIXES wine i386-linux-gnu/wine)
++FIND_LIBRARY(WINE_LIBRARY NAMES wine PATH_SUFFIXES wine i386-linux-gnu/wine wine/i386-unix)
+ FIND_PROGRAM(WINE_CXX NAMES wineg++ winegcc winegcc64 winegcc32)
+ 
+ set(WINE_INCLUDE_DIRS ${WINE_INCLUDE_DIR} )
