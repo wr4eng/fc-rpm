@@ -72,10 +72,10 @@ BuildRequires:  qt5-qttools-devel
 BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  xcb-util-devel
 BuildRequires:  xcb-util-keysyms-devel
-BuildRequires:  fltk-devel
-BuildRequires:  fltk-fluid
-BuildRequires:  cmake >= 4.0.0 
-BuildRequires:  make
+BuildRequires:  fltk-devel >= 1.4.5
+BuildRequires:  fltk-fluid >= 1.4.5
+BuildRequires:  cmake >= 4.3.0
+BuildRequires:  make >=4.4.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  desktop-file-utils
@@ -231,6 +231,9 @@ This package contains the necessary files to host VST plugins.
 
 
 %changelog
+* Tue May 19 2026 W. Hadi HSW <wra.eng@gmail.com> - 1.2.2-20.1
+- Rebuild with cmake >= 4.0.0 , fltk >= 1.4.0
+
 * Sat Jan 24 2026 Richard Shaw <hobbes1069@gmail.com> - 1.2.2-20
 - Rebuild with fltk 1.4.
 
