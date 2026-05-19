@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 LMMS Developers -->
+<component type="desktop">
+ <id>lmms</id>
+ <metadata_license>CC0</metadata_license>
+ <project_license>GPL-2.0+</project_license>
+ <name>LMMS</name>
+ <name xml:lang="fr">LMMS</name>
+ <summary>A music production application</summary>
+ <summary xml:lang="fr">Une application de production musicale</summary>
+ <description>
+   <p>LMMS is a music production application. It allows the creation
+   of loops, synthesizing and mixing sounds, arranging samples having
+   fun with your MIDI-keyboard and much more... It combines the
+   features of a tracker-/sequencer-program and those of powerful
+   synthesizers, samplers, effects etc. in a modern, user-friendly and
+   easy to use graphical user-interface.</p>
+ </description>
+ <description xml:lang="fr">
+   <p>LMMS est une applicaton de production musicale. Elle permet la
+   creation de loops, de synthétiser et mixer des sons, d'arranger des
+   échantillons, de jouer avec un clavier MIDI, et plus... Elle
+   combine les fonctionalités d'un programme tracker/séquenceur et
+   celles de synthétiseurs puissants, échantilloneurs, effets, etc. le
+   tout dans une interface graphique moderne et facile à utiliser.</p>
+ </description>
+ <content_rating type="oars-1.1" />
+ <launchable type="desktop-id">lmms.desktop</launchable>
+ <translation type="qt">lmms</translation>
+ <screenshots>
+  <screenshot type="default">
+   <image>https://lmms.io/wiki/images/thumb/2/2d/Startup_LMMS_new.png/1200px-Startup_LMMS_new.png</image>
+   <caption>The main LMMS window</caption>
+  </screenshot>
+ </screenshots>
+ <update_contact>lmms-devel_AT_lists.sourceforge.net</update_contact>
+ <url type="homepage">https://lmms.io/</url>
+ <url type="bugtracker">https://github.com/LMMS/lmms/issues</url>
+ <url type="faq">https://lmms.io/documentation/User_FAQ</url>
+ <url type="help">https://lmms.io/documentation/</url>
+ <url type="translate">https://github.com/LMMS/lmms/wiki/Creating-a-localization</url>
+</component>
