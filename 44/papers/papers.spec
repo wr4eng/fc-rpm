@@ -9,7 +9,7 @@
 ## END: Set by rpmautospec
 %bcond bundled_rust_deps 1
 
-%bcond bundled_rust_deps %{defined rhel}
+## %bcond bundled_rust_deps %{defined rhel}
 
 # djvulibre is not available in RHEL 10+
 %bcond djvu %{undefined rhel}
