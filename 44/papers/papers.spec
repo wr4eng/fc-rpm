@@ -7,6 +7,7 @@
     print(release_number + base_release_number - 1);
 }%{?-e:.%{-e*}}%{?-s:.%{-s*}}%{!?-n:%{?dist}}
 ## END: Set by rpmautospec
+%bcond bundled_rust_deps 1
 
 %bcond bundled_rust_deps %{defined rhel}
 
