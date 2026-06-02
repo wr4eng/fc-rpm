@@ -14,7 +14,7 @@
 %global gtk4_version 4.22.4
 %global gsettings_desktop_schemas_version 50.1
 %global libdrm_version 2.4.133
-%global libinput_version 1.33.2
+%global libinput_version 1.31.2
 %global pixman_version 0.46.2
 %global pipewire_version 1.6.6
 %global lcms2_version 2.16
