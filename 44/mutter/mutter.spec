@@ -36,6 +36,7 @@ Summary:       Window and compositing manager based on Clutter
 License:       GPL-2.0-or-later
 URL:           https://www.gnome.org
 Source0:       https://download.gnome.org/sources/%{name}/%{major_version}/%{name}-%{tarball_version}.tar.xz
+Patch0: 0001-clutter-input-focus-check-null.patch
 
 BuildRequires: cvt
 BuildRequires: desktop-file-utils
@@ -167,7 +168,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 Viewer for nested mutter instances.
 
 %prep
-%autosetup -S git -n %{name}-%{tarball_version}
+%autosetup -S git -p1 -n %{name}-%{tarball_version}
 
 %build
 %meson -Degl_device=true
