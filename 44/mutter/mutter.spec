@@ -13,7 +13,7 @@
 %global gtk3_version 1.86.0
 %global gtk4_version 4.22.4
 %global gsettings_desktop_schemas_version 50.1
-%global libdrm_version 4.22.4
+%global libdrm_version 2.4.133
 %global libinput_version 1.31.2
 %global pixman_version 0.46.2
 %global pipewire_version 1.6.6
@@ -36,7 +36,7 @@ Summary:       Window and compositing manager based on Clutter
 License:       GPL-2.0-or-later
 URL:           https://www.gnome.org
 Source0:       https://download.gnome.org/sources/%{name}/%{major_version}/%{name}-%{tarball_version}.tar.xz
-Patch0: 0001-clutter-input-focus-check-null.patch
+Patch0:     0001-clutter-input-focus-check-null.patch
 
 BuildRequires: cvt
 BuildRequires: desktop-file-utils
