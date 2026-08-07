@@ -1,7 +1,7 @@
 # Epson Inkjet Printer Driver 2 (ESC/P-R) for Fedora (COPR)
 Name:           epson-inkjet-printer-escpr2
 Version:        1.2.38
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Epson Inkjet Printer Driver 2 (ESC/P-R) for Linux
 License:        LGPL-2.0-or-later
 URL:            https://support.epson.net/linux/Printer/LSB_distribution_pages/en/escpr2.php
