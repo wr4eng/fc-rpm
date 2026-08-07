@@ -1,7 +1,8 @@
-# Epson Inkjet Printer Driver (ESC/P-R)
+# Epson Inkjet Printer Driver (ESC/P-R) for Fedora (COPR)
+
 Name:           epson-inkjet-printer-escpr
 Version:        1.8.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Epson Inkjet Printer Driver (ESC/P-R) for Linux
 License:        GPL-2.0-or-later
 URL:            http://support.epson.net/linux/Printer/LSB_distribution_pages/en/escpr.php
@@ -21,8 +22,8 @@ Requires:       cups
 Requires:       ghostscript
 
 # CUPS keeps its own filter/backend tree outside the distro's libdir
-# convention (always /usr/lib/cups/... even on lib64 systems). 
-# Ask cups-config for the real path instead of assuming %{_libdir}.
+# convention (always /usr/lib/cups/... even on lib64 systems). Ask
+# cups-config for the real path instead of assuming %{_libdir}.
 %global cups_serverbin %(cups-config --serverbin 2>/dev/null || echo %{_exec_prefix}/lib/cups)
 
 %description
